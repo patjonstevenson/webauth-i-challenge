@@ -5,7 +5,7 @@ const model = {
 
     findBy: filter => db('users').select('id', 'username').where(filter),
 
-    findById: id => db('users').select('id', 'username').where({ id }),
+    findById: id => db('users').select('id', 'username').where({ id }).first(),
 
     add: user => {
         const newId = db('users').insert(user, 'id');

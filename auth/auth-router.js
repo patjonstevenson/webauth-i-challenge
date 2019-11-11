@@ -1,4 +1,4 @@
-const router = require(express).Router();
+const router = require('express').Router();
 const bcrypt = require("bcryptjs");
 
 const Users = require('../users/users-model');
@@ -10,7 +10,7 @@ router.post("/register", async (req, res) => {
     };
 
     try {
-        const saved = Users.add(credentials);
+        const saved = await Users.add(credentials);
         res.status(201).json(saved);
     } catch (error) {
         console.log("Error registering:\n", error);
@@ -30,7 +30,7 @@ router.post("/login", async (req, res) => {
             }
         } catch (error) {
             console.log(error);
-            res.status(500).json({ message: "Internal server error authorizing." })
+            res.status(500).json({ message: "Internal server error logging in." })
         }
     }
 });

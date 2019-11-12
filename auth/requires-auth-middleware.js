@@ -2,7 +2,7 @@ const Users = require("../users/users-model");
 const bcrypt = require("bcryptjs");
 
 const requiresAuth = async (req, res, next) => {
-    const { username, password } = req.headers;
+    /*const { username, password } = req.headers;
     if (username && password) {
         try {
             const user = await Users.findBy({ username }).first();
@@ -19,6 +19,12 @@ const requiresAuth = async (req, res, next) => {
     }
     else {
         res.status(400).json({ message: "Please provide credentials" });
+    }*/
+
+    if (req.session && req.session.username) {
+        next();
+    } else {
+        res.status(401).json({ message: "Must be logged in." });
     }
 }
 

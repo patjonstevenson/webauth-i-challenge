@@ -32,6 +32,8 @@ router.post("/login", async (req, res) => {
             console.log(error);
             res.status(500).json({ message: "Internal server error logging in." })
         }
+    } else {
+        res.status(400).json({ message: "Please provide credentials" });
     }
 });
 

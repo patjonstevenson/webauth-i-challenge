@@ -17,7 +17,9 @@ const requiresAuth = async (req, res, next) => {
         }
 
     }
-
+    else {
+        res.status(400).json({ message: "Please provide credentials" });
+    }
 }
 
 module.exports = requiresAuth;

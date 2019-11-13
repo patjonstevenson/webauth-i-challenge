@@ -38,4 +38,19 @@ router.post("/login", async (req, res) => {
     }
 });
 
+router.get('/logout', (req, res) => {
+    if (req.session) {
+        req.session.destroy(error => {
+            if (error) {
+                res.status(500).json({ message: "You are not allowed to leave." });
+            } else {
+                res.status(200).json({ message: "Logged out successfully!" });
+            }
+        });
+    } else {
+        res.status(200).json({ message: "No session" })
+    }
+
+})
+
 module.exports = router;
